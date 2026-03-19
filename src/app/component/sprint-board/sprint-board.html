@@ -1,0 +1,50 @@
+ <div class="sprint-board">
+      <header class="board-header">
+        <h1>Sprint Board</h1>
+        <button class="btn-add-task" (click)="showTaskForm.set(true)">
+          + Add Task
+        </button>
+      </header>
+
+      <div class="board-columns">
+        <app-sprint-column
+          title="To Do"
+          status="todo"
+          [tasks]="todoTasks()"
+          (taskDropped)="onTaskDropped($event)"
+          (taskDelete)="onTaskDelete($event)">
+        </app-sprint-column>
+
+        <app-sprint-column
+          title="In Progress"
+          status="in_progress"
+          [tasks]="inProgressTasks()"
+          (taskDropped)="onTaskDropped($event)"
+          (taskDelete)="onTaskDelete($event)">
+        </app-sprint-column>
+
+        <app-sprint-column
+          title="Done"
+          status="done"
+          [tasks]="doneTasks()"
+          (taskDropped)="onTaskDropped($event)"
+          (taskDelete)="onTaskDelete($event)">
+        </app-sprint-column>
+
+        <app-sprint-column
+          title="Blocked"
+          status="blocked"
+          [tasks]="blockedTasks()"
+          (taskDropped)="onTaskDropped($event)"
+          (taskDelete)="onTaskDelete($event)">
+        </app-sprint-column>
+      </div>
+
+      @if (showTaskForm()) {
+        <app-task-form
+          (submit)="onCreateTask($event)"
+          (cancel)="showTaskForm.set(false)">
+        </app-task-form>
+      }
+    </div>
+  

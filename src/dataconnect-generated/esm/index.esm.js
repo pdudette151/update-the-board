@@ -2,7 +2,7 @@ import { queryRef, executeQuery, mutationRef, executeMutation, validateArgs } fr
 
 export const connectorConfig = {
   connector: 'example',
-  service: 'bootcampbigproject',
+  service: 'update-the-board',
   location: 'us-east4'
 };
 

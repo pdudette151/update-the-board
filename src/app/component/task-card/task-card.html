@@ -1,0 +1,25 @@
+<div
+      class="task-card"
+      [class.priority-high]="task.priority === 'high'"
+      [class.priority-medium]="task.priority === 'medium'"
+      [class.priority-low]="task.priority === 'low'"
+      draggable="true"
+      (dragstart)="onDragStart($event)"
+      (dragend)="onDragEnd($event)">
+
+      <div class="task-header">
+        <h3 class="task-title">{{ task.title }}</h3>
+        <button class="delete-btn" (click)="onDelete()" title="Delete task">×</button>
+      </div>
+
+      @if (task.description) {
+        <p class="task-description">{{ task.description }}</p>
+      }
+
+      <div class="task-footer">
+        @if (task.assigned_to) {
+          <span class="assigned-to">👤 {{ task.assigned_to }}</span>
+        }
+        <span class="priority-badge">{{ task.priority }}</span>
+      </div>
+    </div>
