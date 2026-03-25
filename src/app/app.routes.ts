@@ -40,6 +40,34 @@ export const routes: Routes = [
     component: SprintBoard,
     data: { title: 'Sprint Details' }
   },
+  {path: 'new-task', 
+    component: TaskForm, 
+    data: { title: 'Create New Task' }
+  },
+  {path: 'new-sprint', 
+    component: SprintBoard,
+    data: { title: 'Create New Sprint' }
+  },
+  {path: 'task/:id', 
+    component: TaskForm, 
+    data: { title: 'Edit Task' }
+  },
+  {path: 'sprint/:id', 
+    component: SprintBoard, 
+    data: { title: 'Edit Sprint' }
+  },
+  {path: 'sprint-column',
+    component: SprintColumn,
+    data: { title: 'Sprint Column' }
+  },
+  {path: 'task-card',
+    component: TaskCard,
+    data: { title: 'Task Card' }
+  }, 
+  {path: 'task-form',
+    component: TaskForm,
+    data: { title: 'Task Form' }
+  },
   {
     path: '**',
     redirectTo: '/board',
