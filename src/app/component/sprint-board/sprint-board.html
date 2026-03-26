@@ -42,7 +42,7 @@
 
       @if (showTaskForm()) {
         <app-task-form
-          (submit)="onCreateTask($event)"
+          (taskSubmit)="onCreateTask($event)"
           (cancel)="showTaskForm.set(false)">
         </app-task-form>
       }

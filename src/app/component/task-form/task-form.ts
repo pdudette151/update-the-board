@@ -12,7 +12,7 @@ import { CreateTaskDto, TaskPriority, TaskStatus } from '../../model/task.model'
 })
 
 export class TaskForm {
-  @Output() submit = new EventEmitter<CreateTaskDto>();
+  @Output() taskSubmit = new EventEmitter<CreateTaskDto>();
   @Output() cancel = new EventEmitter<void>();
 
   title = signal('');
@@ -32,7 +32,7 @@ export class TaskForm {
       assigned_to: this.assignedTo()
     };
 
-    this.submit.emit(taskData);
+    this.taskSubmit.emit(taskData);
   }
 
   onCancel() {
