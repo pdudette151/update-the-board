@@ -32,6 +32,13 @@ export class SprintBoard{
     this.tasksService.getTasksByStatus('blocked')
   );
 
+  completionPercentage = computed(() => {
+    if (this.tasksService.tasks().length === 0){
+      return 0;
+    }
+    return (this.doneTasks().length / this.tasksService.tasks().length)*100;
+  });
+
   constructor(public tasksService: TasksService) {}
 
   async onCreateTask(taskData: CreateTaskDto) {
