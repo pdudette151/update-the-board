@@ -24,20 +24,21 @@
         </app-sprint-column>
 
         <app-sprint-column
-          title="Done"
-          status="done"
-          [tasks]="doneTasks()"
-          (taskDropped)="onTaskDropped($event)"
-          (taskDelete)="onTaskDelete($event)">
-        </app-sprint-column>
-
-        <app-sprint-column
           title="Blocked"
           status="blocked"
           [tasks]="blockedTasks()"
           (taskDropped)="onTaskDropped($event)"
           (taskDelete)="onTaskDelete($event)">
         </app-sprint-column>
+
+        <app-sprint-column
+          title="Done"
+          status="done"
+          [tasks]="doneTasks()"
+          (taskDropped)="onTaskDropped($event)"
+          (taskDelete)="onTaskDelete($event)">
+        </app-sprint-column>
+        
       </div>
 
       @if (showTaskForm()) {
