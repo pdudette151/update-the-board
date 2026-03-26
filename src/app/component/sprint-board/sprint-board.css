@@ -20,6 +20,7 @@
     }
 
     .progress-bar {
+      color: white;
       width: 200px;
       background-color: #e0e0e0;
       border-radius: 4px;
@@ -29,7 +30,7 @@
     
     .progress {
       height: 100%;
-      background-color: #4caf50;
+      background-color: #4ca5af;
       border-radius: 4px;
       transition: width 0.3s ease;
     }
