@@ -49,6 +49,8 @@
       cursor: pointer;
       transition: all 0.2s;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      grid-column: 1;
+      grid-row: 1;
     }
 
     .btn-add-task:hover {
@@ -63,11 +65,9 @@
       padding: 8px;
       align-items: flex-start;
     }
-    
-    .todo-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+
+    .board-columns app-sprint-column {
+      grid-row: 2;
     }
 
     .board-columns::-webkit-scrollbar {
