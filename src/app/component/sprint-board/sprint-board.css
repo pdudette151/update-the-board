@@ -59,7 +59,8 @@
     }
 
     .board-columns {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
       overflow-x: auto;
       padding: 8px;
