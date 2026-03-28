@@ -19,6 +19,11 @@
       font-weight: 700;
     }
 
+    .wrapper {
+      color: white;
+      font-weight: bold;
+    }
+
     .progress-bar {
       color: white;
       width: 200px;
