@@ -6,12 +6,14 @@
             <div class="progress" [style.width.%]="completionPercentage()"></div>
           </div>{{ completionPercentage() }}%
         </div>
-        <button class="btn-add-task" (click)="showTaskForm.set(true)">
-          + Add Task
-        </button>
       </header>
 
       <div class="board-columns">
+        
+        <button class="btn-add-task" (click)="showTaskForm.set(true)">
+          + Add Task
+        </button>
+
         <app-sprint-column
           title="To Do"
           status="todo"
