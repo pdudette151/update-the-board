@@ -10,17 +10,19 @@
 
       <div class="board-columns">
         
-        <button class="btn-add-task" (click)="showTaskForm.set(true)">
-          + Add Task
-        </button>
-
-        <app-sprint-column
+        <div class="todo-wrapper">
+          <button class="btn-add-task" (click)="showTaskForm.set(true)">
+            + Add Task
+          </button>
+          
+          <app-sprint-column
           title="To Do"
           status="todo"
           [tasks]="todoTasks()"
           (taskDropped)="onTaskDropped($event)"
           (taskDelete)="onTaskDelete($event)">
-        </app-sprint-column>
+          </app-sprint-column>
+        </div>
 
         <app-sprint-column
           title="In Progress"
