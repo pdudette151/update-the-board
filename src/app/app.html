@@ -1,1 +1,10 @@
-<router-outlet />
+<div [class.blurred]="!currentUser()">
+  <router-outlet />
+</div>
+
+@if (!currentUser()) {
+  <div id="login-overlay">
+    <app-login></app-login>
+  </div>
+}
+
