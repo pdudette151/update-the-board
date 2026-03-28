@@ -28,7 +28,7 @@
       overflow: hidden;
       padding-right: 14px;
       display: flex;
-      align-items: right;
+      align-items: flex-end;
     }
     
     .progress {
@@ -61,6 +61,7 @@
       gap: 16px;
       overflow-x: auto;
       padding: 8px;
+      align-items: flex-start;
     }
     
     .todo-wrapper {
