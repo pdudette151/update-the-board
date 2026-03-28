@@ -59,6 +59,12 @@
       overflow-x: auto;
       padding: 8px;
     }
+    
+    .todo-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
     .board-columns::-webkit-scrollbar {
       height: 8px;
