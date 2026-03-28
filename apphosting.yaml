@@ -2,6 +2,12 @@
 # See https://firebase.google.com/docs/app-hosting/configure#cloud-run
 runConfig:
   minInstances: 0
+
+headers:
+  - path: "/**"
+    headers:
+      - key: "Content-Security-Policy"
+        value: "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://*.googleapis.com https://*.firebaseapp.com https://*.gstatic.com; object-src 'none';"
   # maxInstances: 100
   # concurrency: 80
   # cpu: 1
