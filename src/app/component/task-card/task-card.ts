@@ -18,6 +18,7 @@ export class TaskCard {
     status: 'todo',
     priority: 'medium',
     assigned_to: '',
+    created_by: '',
     sprint: '',
     order_index: 0,
     in_backlog: false,

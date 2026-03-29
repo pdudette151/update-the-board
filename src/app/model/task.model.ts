@@ -5,6 +5,7 @@ export interface Task {
   status: 'todo' | 'in_progress' | 'done' | 'blocked';
   priority: 'low' | 'medium' | 'high';
   assigned_to: string;
+  created_by: string;
   sprint: string;
   order_index: number;
   in_backlog: boolean;
@@ -24,4 +25,11 @@ export interface CreateTaskDto {
   sprint?: string;
   order_index?: number;
   in_backlog?: boolean;
+}
+
+export interface UserProfile {
+  uid: string;
+  displayName: string | null;
+  email: string | null;
+  photoURL: string | null;
 }

@@ -1,75 +1,63 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { Firestore, collection, collectionData, addDoc, doc, updateDoc, deleteDoc, query, orderBy } from '@angular/fire/firestore';
+import { Auth as FirebaseAuth } from '@angular/fire/auth';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Observable } from 'rxjs';
 import { Task, CreateTaskDto, TaskStatus } from '../model/task.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class TasksService {
-  tasks = signal<Task[]>([]);
 
-  async loadTasks() {
-    this.tasks.update(tasks =>
-      [...tasks].sort((a, b) => a.order_index - b.order_index)
-    );
-  }
+export class TasksService {
+  private firestore = inject(Firestore);
+  private auth = inject(FirebaseAuth);
+
+  private tasksCollection = collection(this.firestore, 'tasks');
+
+  tasks = toSignal(
+    collectionData(
+      query(this.tasksCollection, orderBy('order_index')),
+      { idField: 'id' }
+    ) as Observable<Task[]>,
+    { initialValue: [] as Task[] }
+  );
 
   async createTask(taskData: CreateTaskDto) {
-    const now = new Date().toISOString();
-    const newTask: Task = {
-      id: crypto.randomUUID(),
-      title: taskData.title,
-      description: taskData.description ?? '',
-      status: taskData.status ?? 'todo',
-      priority: taskData.priority ?? 'medium',
-      assigned_to: taskData.assigned_to ?? '',
-      sprint: taskData.sprint ?? '',
-      order_index: taskData.order_index ?? this.tasks().length,
-      in_backlog: taskData.in_backlog ?? false,
-      created_at: now,
-      updated_at: now,
-    };
+  const currentUser = this.auth.currentUser;
+  const now = new Date().toISOString();
 
-    this.tasks.update(tasks =>
-      [...tasks, newTask].sort((a, b) => a.order_index - b.order_index)
-    );
-
-    return newTask;
+  await addDoc(this.tasksCollection, {
+    title: taskData.title,
+    description: taskData.description ?? '',
+    status: taskData.status ?? 'todo',
+    priority: taskData.priority ?? 'medium',
+    assigned_to: taskData.assigned_to ?? '',
+    created_by: currentUser?.displayName ?? currentUser?.email ?? '',
+    sprint: taskData.sprint ?? '',
+    order_index: taskData.order_index ?? this.tasks().length,
+    in_backlog: taskData.in_backlog ?? false,
+    created_at: now,
+    updated_at: now,
+    });
   }
 
   async updateTask(id: string, updates: Partial<Task>) {
-    let wasUpdated = false;
-
-    this.tasks.update(tasks =>
-      tasks
-        .map(task => {
-          if (task.id !== id) {
-            return task;
-          }
-
-          wasUpdated = true;
-          return {
-            ...task,
-            ...updates,
-            updated_at: new Date().toISOString(),
-          };
-        })
-        .sort((a, b) => a.order_index - b.order_index)
-    );
-
-    return wasUpdated;
+    const taskDoc = doc(this.firestore, 'tasks', id);
+    await updateDoc(taskDoc, {
+      ...updates,
+      updated_at: new Date().toISOString(),
+    });
+    return true;
   }
 
   async deleteTask(id: string) {
-    const currentTasks = this.tasks();
-    const filteredTasks = currentTasks.filter(task => task.id !== id);
-
-    if (filteredTasks.length === currentTasks.length) {
-      return false;
-    }
-
-    this.tasks.set(filteredTasks);
+    const taskDoc = doc(this.firestore, 'tasks', id);
+    await deleteDoc(taskDoc);
     return true;
   }
+
 
   getTasksByStatus(status: TaskStatus): Task[] {
     return this.tasks().filter(task => task.status === status);
