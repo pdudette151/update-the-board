@@ -1,9 +1,10 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TasksService } from '../../services/tasks';
 import { CreateTaskDto, TaskStatus } from '../../model/task.model';
 import { SprintColumn } from '../sprint-column/sprint-column';
 import { TaskForm } from '../task-form/task-form';
+import { Auth } from '../../services/auth';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { TaskForm } from '../task-form/task-form';
   templateUrl: './sprint-board.html',
   styleUrls: ['./sprint-board.css'],
 })
+
 export class SprintBoard{
   showTaskForm = signal(false);
 
@@ -39,7 +41,8 @@ export class SprintBoard{
     return (this.doneTasks().length / this.tasksService.tasks().length)*100;
   });
 
-  constructor(public tasksService: TasksService) {}
+  tasksService = inject(TasksService);
+  authService = inject(Auth);
 
   async onCreateTask(taskData: CreateTaskDto) {
     await this.tasksService.createTask(taskData);
@@ -54,5 +57,9 @@ export class SprintBoard{
 
   async onTaskDelete(taskId: string) {
     await this.tasksService.deleteTask(taskId);
+  }
+
+  async signOut() {
+    await this.authService.signOut();
   }
 }

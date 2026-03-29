@@ -47,18 +47,19 @@
 
           <div class="form-group">
             <label for="assigned_to">Assigned To</label>
-            <input
-              type="text"
-              id="assigned_to"
-              [(ngModel)]="assignedTo"
-              name="assigned_to"
-              placeholder="Enter assignee name">
+            <select id="assigned_to" [(ngModel)]="assignedTo" name="assigned_to">
+              <option value="">Unassigned</option>
+              @for (u of users; track u.uid) {
+                <option [value]="u.displayName ?? u.email">{{ u.displayName ?? u.email }}</option>
+              }
+            </select>
           </div>
 
           <div class="form-actions">
             <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
             <button type="submit" class="btn btn-primary" [disabled]="!title()">Create Task</button>
           </div>
+          
         </form>
     </div>
 </div>

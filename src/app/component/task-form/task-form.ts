@@ -1,7 +1,7 @@
-import { Component, Output, EventEmitter, signal } from '@angular/core';
+import { Component, Input, Output, EventEmitter, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CreateTaskDto, TaskPriority, TaskStatus } from '../../model/task.model';
+import { CreateTaskDto, TaskPriority, TaskStatus, UserProfile } from '../../model/task.model';
 
 @Component({
   selector: 'app-task-form',
@@ -12,6 +12,7 @@ import { CreateTaskDto, TaskPriority, TaskStatus } from '../../model/task.model'
 })
 
 export class TaskForm {
+  @Input() users: UserProfile[] = [];
   @Output() taskSubmit = new EventEmitter<CreateTaskDto>();
   @Output() cancel = new EventEmitter<void>();
 
