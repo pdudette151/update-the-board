@@ -4,6 +4,13 @@
   padding: 24px;
 }
 
+h1 {
+  color: white;
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+
 .board-header {
   display: flex;
   justify-content: space-between;
@@ -12,11 +19,11 @@
   padding: 0 8px;
 }
 
-h1 {
-  color: white;
-  margin: 0;
-  font-size: 32px;
-  font-weight: 700;
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
 }
 
 .wrapper {
