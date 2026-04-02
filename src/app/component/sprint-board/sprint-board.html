@@ -1,14 +1,17 @@
 <div class="sprint-board">
   <header class="board-header">
-    <h1>Update The Board!</h1>
+  <h1>Update The Board!</h1>
+  <div class="header-right">
+    <button class="btn-sign-out" (click)="signOut()">Sign Out</button>
     <div class="wrapper">
       <div class="progress-bar">
         <div class="progress" [style.width.%]="completionPercentage()">
         </div>
-      </div>{{ completionPercentage() }}%
+      </div>{{ completionPercentage() }}% complete
     </div>
-    <button class="btn-sign-out" (click)="signOut()">Sign Out</button>
+  </div>
   </header>
+
 
   <div class="board-columns">
         
@@ -57,4 +60,4 @@
         (cancel)="showTaskForm.set(false)">
       </app-task-form>
     }
-  </div>
+</div>
