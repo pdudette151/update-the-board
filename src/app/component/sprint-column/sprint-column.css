@@ -1,5 +1,5 @@
 .column {
-      background: #f3f4f6;
+      background: var(--card);
       border-radius: 8px;
       min-width: 280px;
       max-width: 320px;
@@ -12,19 +12,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 2px solid #e5e7eb;
+      border-bottom: 2px solid var(--border);
     }
 
     .column-title {
       margin: 0;
       font-size: 16px;
       font-weight: 600;
-      color: #1f2937;
+      color: var(--card-foreground);
     }
 
     .task-count {
-      background: #d1d5db;
-      color: #4b5563;
+      background: var(--muted);
+      color: var(--muted-foreground);
       border-radius: 12px;
       padding: 2px 8px;
       font-size: 12px;
@@ -40,11 +40,11 @@
     }
 
     .column-content.drag-over {
-      background: #e5e7eb;
+      background: var(--accent);
     }
 
     .empty-state {
-      text-align: center;
+      text-align: var(--muted-foreground);
       color: #9ca3af;
       font-size: 14px;
       padding: 20px;

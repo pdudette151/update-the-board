@@ -16,6 +16,16 @@ import { Auth } from '../../services/auth';
 })
 
 export class SprintBoard{
+  darkMode = signal(false);
+  
+  toggleTheme() {
+    this.darkMode.update(v => !v);
+    document.documentElement.setAttribute(
+      'data-theme',
+      this.darkMode() ? 'dark' : 'light'
+    );
+  }
+
   showTaskForm = signal(false);
 
   todoTasks = computed(() =>
