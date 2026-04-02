@@ -3,63 +3,73 @@
   <h1>Update The Board!</h1>
   <div class="header-right">
     <button class="btn-sign-out" (click)="signOut()">Sign Out</button>
-  </div>
-  </header>
-
-
-  <div class="board-columns">
-        
-    <div class="todo-header">
-      <button class="btn-add-task" (click)="showTaskForm.set(true)">
-      + Add Task
-      </button>
-      <div class="wrapper">
+    <div class="wrapper">
         <div class="progress-bar">
           <div class="progress" [style.width.%]="completionPercentage()">
           </div>
         </div>{{ completionPercentage() }}% complete
-      </div>
     </div>
+  </div>
+  </header>
+
+<div class="board-columns">
         
-    <app-sprint-column
-      title="To Do"
-      status="todo"
-      [tasks]="todoTasks()"
-      (taskDropped)="onTaskDropped($event)"
-      (taskDelete)="onTaskDelete($event)">
-    </app-sprint-column>
+  <button class="btn-add-task" (click)="showTaskForm.set(true)">
+    + Add Task
+  </button>
 
-    <app-sprint-column
-      title="In Progress"
-      status="in_progress"
-      [tasks]="inProgressTasks()"
-      (taskDropped)="onTaskDropped($event)"
-      (taskDelete)="onTaskDelete($event)">
-    </app-sprint-column>
-
-    <app-sprint-column
-      title="Blocked"
-      status="blocked"
-      [tasks]="blockedTasks()"
-      (taskDropped)="onTaskDropped($event)"
-      (taskDelete)="onTaskDelete($event)">
-    </app-sprint-column>
-
-    <app-sprint-column
-      title="Done"
-      status="done"
-      [tasks]="doneTasks()"
-      (taskDropped)="onTaskDropped($event)"
-      (taskDelete)="onTaskDelete($event)">
-    </app-sprint-column>
-
+  <div class="wrapper" style="grid-column: 4; grid-row: 1; justify-self: end;">
+    <div class="progress-bar">
+      <div class="progress" [style.width.%]="completionPercentage()">
+      </div>
+    </div>{{ completionPercentage() }}% complete
   </div>
 
-    @if (showTaskForm()) {
-      <app-task-form
-        [users]="authService.users()"
-        (taskSubmit)="onCreateTask($event)"
-        (cancel)="showTaskForm.set(false)">
-      </app-task-form>
-    }
+        
+  <div class="todo-header">
+    <button class="btn-add-task" (click)="showTaskForm.set(true)">
+      + Add Task
+    </button>
+  </div>
+        
+  <app-sprint-column
+    title="To Do"
+    status="todo"
+    [tasks]="todoTasks()"
+    (taskDropped)="onTaskDropped($event)"
+    (taskDelete)="onTaskDelete($event)">
+  </app-sprint-column>
+
+  <app-sprint-column
+    title="In Progress"
+    status="in_progress"
+    [tasks]="inProgressTasks()"
+    (taskDropped)="onTaskDropped($event)"
+    (taskDelete)="onTaskDelete($event)">
+  </app-sprint-column>
+
+  <app-sprint-column
+    title="Blocked"
+    status="blocked"
+    [tasks]="blockedTasks()"
+    (taskDropped)="onTaskDropped($event)"
+    (taskDelete)="onTaskDelete($event)">
+  </app-sprint-column>
+
+  <app-sprint-column
+    title="Done"
+    status="done"
+    [tasks]="doneTasks()"
+    (taskDropped)="onTaskDropped($event)"
+    (taskDelete)="onTaskDelete($event)">
+  </app-sprint-column>
+
+  @if (showTaskForm()) {
+    <app-task-form
+      [users]="authService.users()"
+      (taskSubmit)="onCreateTask($event)"
+      (cancel)="showTaskForm.set(false)">
+    </app-task-form>
+  }
+  
 </div>
