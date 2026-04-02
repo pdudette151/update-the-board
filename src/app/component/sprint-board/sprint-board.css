@@ -1,95 +1,113 @@
 .sprint-board {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 24px;
-    }
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 24px;
+}
 
-    .board-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      padding: 0 8px;
-    }
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 0 8px;
+}
 
-    h1 {
-      color: white;
-      margin: 0;
-      font-size: 32px;
-      font-weight: 700;
-    }
+h1 {
+  color: white;
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+}
 
-    .wrapper {
-      color: white;
-      font-weight: bold;
-    }
+.wrapper {
+  color: white;
+  font-weight: bold;
+}
 
-    .progress-bar {
-      color: white;
-      width: 200px;
-      background-color: #e0e0e0;
-      border-radius: 4px;
-      height: 16px;
-      overflow: hidden;
-      padding-right: 14px;
-      display: flex;
-      align-items: flex-end;
-    }
+.progress-bar {
+  color: white;
+  width: 200px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  height: 16px;
+  overflow: hidden;
+  padding-right: 14px;
+  display: flex;
+  align-items: flex-end;
+}
     
-    .progress {
-      height: 100%;
-      background-color: #4ca5af;
-      border-radius: 4px;
-      transition: width 0.3s ease;
-    }
+.progress {
+  height: 100%;
+  background-color: #4ca5af;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
 
-    .btn-add-task {
-      background: white;
-      color: #667eea;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      grid-column: 1;
-      grid-row: 1;
-    }
+.btn-sign-out {
+  background: white;
+  color: #667eea;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-    .btn-add-task:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
+.btn-sign-out:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
-    .board-columns {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      overflow-x: auto;
-      padding: 8px;
-      align-items: flex-start;
-    }
+.btn-add-task {
+  background: white;
+  color: #667eea;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  grid-column: 1;
+  grid-row: 1;
+}
 
-    .board-columns app-sprint-column {
-      grid-row: 2;
-    }
+.btn-add-task:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
 
-    .board-columns::-webkit-scrollbar {
-      height: 8px;
-    }
+.board-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  overflow-x: auto;
+  padding: 8px;
+  align-items: flex-start;
+}
 
-    .board-columns::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-    }
+.board-columns app-sprint-column {
+  grid-row: 2;
+}
 
-    .board-columns::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 4px;
-    }
+.board-columns::-webkit-scrollbar {
+  height: 8px;
+}
 
-    .board-columns::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.4);
-    }
+.board-columns::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.board-columns::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.board-columns::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
