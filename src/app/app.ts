@@ -12,13 +12,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   selector: 'app-root',
   imports: [RouterOutlet, Login ,SprintBoard, SprintColumn, TaskCard, TaskForm],
   templateUrl: './app.html',
-  styleUrls: [
-    './app.css',
-    './component/sprint-board/sprint-board.css',
-    './component/sprint-column/sprint-column.css',
-    './component/task-card/task-card.css',
-    './component/task-form/task-form.css'
-  ]
+  styleUrls: ['./app.css']
 })
 
 export class App {
