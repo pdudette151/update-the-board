@@ -28,7 +28,8 @@
     status="todo"
     [tasks]="todoTasks()"
     (taskDropped)="onTaskDropped($event)"
-    (taskDelete)="onTaskDelete($event)">
+    (taskDelete)="onTaskDelete($event)"
+    (taskEdit)="onEditTask($event)">
   </app-sprint-column>
 
   <app-sprint-column
@@ -36,7 +37,8 @@
     status="in_progress"
     [tasks]="inProgressTasks()"
     (taskDropped)="onTaskDropped($event)"
-    (taskDelete)="onTaskDelete($event)">
+    (taskDelete)="onTaskDelete($event)"
+    (taskEdit)="onEditTask($event)">
   </app-sprint-column>
 
   <app-sprint-column
@@ -44,7 +46,8 @@
     status="blocked"
     [tasks]="blockedTasks()"
     (taskDropped)="onTaskDropped($event)"
-    (taskDelete)="onTaskDelete($event)">
+    (taskDelete)="onTaskDelete($event)"
+    (taskEdit)="onEditTask($event)">
   </app-sprint-column>
 
   <app-sprint-column
@@ -52,15 +55,17 @@
     status="done"
     [tasks]="doneTasks()"
     (taskDropped)="onTaskDropped($event)"
-    (taskDelete)="onTaskDelete($event)">
+    (taskDelete)="onTaskDelete($event)"
+    (taskEdit)="onEditTask($event)">
   </app-sprint-column>
 
   @if (showTaskForm()) {
     <app-task-form
       [users]="authService.users()"
+      [editTask]="editingTask()"
       (taskSubmit)="onCreateTask($event)"
-      (cancel)="showTaskForm.set(false)">
+      (taskUpdate)="onUpdateTask($event)"
+      (cancel)="showTaskForm.set(false); editingTask.set(null)">
     </app-task-form>
   }
-  
 </div>

@@ -44,13 +44,16 @@ export class TasksService {
   }
 
   async updateTask(id: string, updates: Partial<Task>) {
+    const currentUser = this.auth.currentUser;
     const taskDoc = doc(this.firestore, 'tasks', id);
-    await updateDoc(taskDoc, {
+   await updateDoc(taskDoc, {
       ...updates,
       updated_at: new Date().toISOString(),
+      updated_by: currentUser?.displayName ?? currentUser?.email ?? '',
     });
     return true;
   }
+
 
   async deleteTask(id: string) {
     const taskDoc = doc(this.firestore, 'tasks', id);

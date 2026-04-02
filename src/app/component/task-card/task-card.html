@@ -9,7 +9,7 @@
 
       <div class="task-header">
         <h3 class="task-title">{{ task.title }}</h3>
-        <button class="delete-btn" (click)="onDelete()" title="Delete task">×</button>
+        <button class="delete-btn" (click)="$event.stopPropagation(); onDelete()" title="Delete task">×</button>
       </div>
 
       @if (task.description) {

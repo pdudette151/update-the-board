@@ -19,6 +19,7 @@ export class TaskCard {
     priority: 'medium',
     assigned_to: '',
     created_by: '',
+    updated_by: '',
     sprint: '',
     order_index: 0,
     in_backlog: false,
@@ -28,11 +29,16 @@ export class TaskCard {
   @Output() dragStart = new EventEmitter<Task>();
   @Output() dragEnd = new EventEmitter<void>();
   @Output() delete = new EventEmitter<string>();
+  @Output() edit = new EventEmitter<Task>();
 
   onDragStart(event: DragEvent) {
     event.dataTransfer!.effectAllowed = 'move';
     event.dataTransfer!.setData('text/plain', this.task.id);
     this.dragStart.emit(this.task);
+  }
+
+  onEdit() {
+  this.edit.emit(this.task);
   }
 
   onDragEnd(event: DragEvent) {
@@ -44,4 +50,5 @@ export class TaskCard {
       this.delete.emit(this.task.id);
     }
   }
+  
 }

@@ -1,6 +1,6 @@
  <div class="task-form-overlay" (click)="onCancel()">
     <div class="task-form" (click)="$event.stopPropagation()">
-        <h2>Create New Task</h2>
+        <h2>{{ editTask ? 'Edit Task' : 'Create New Task' }}</h2>
 
         <form (ngSubmit)="onSubmit()">
           <div class="form-group">
@@ -57,7 +57,7 @@
 
           <div class="form-actions">
             <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
-            <button type="submit" class="btn btn-primary" [disabled]="!title()">Create Task</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!title()">{{ editTask ? 'Save Changes' : 'Create Task' }}</button>
           </div>
           
         </form>

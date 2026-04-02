@@ -17,7 +17,8 @@
             [task]="task"
             (dragStart)="onTaskDragStart($event)"
             (dragEnd)="onTaskDragEnd()"
-            (delete)="taskDelete.emit($event)">
+            (delete)="taskDelete.emit($event)"
+            (edit)="taskEdit.emit($event)">
           </app-task-card>
         }
 

@@ -17,6 +17,7 @@ export class SprintColumn {
   @Input() tasks: Task[] = [];
   @Output() taskDropped = new EventEmitter<{ taskId: string, newStatus: TaskStatus }>();
   @Output() taskDelete = new EventEmitter<string>();
+  @Output() taskEdit = new EventEmitter<Task>();
 
   isDragOver = false;
   dragCounter = 0;

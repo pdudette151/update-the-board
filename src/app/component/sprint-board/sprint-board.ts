@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TasksService } from '../../services/tasks';
-import { CreateTaskDto, TaskStatus } from '../../model/task.model';
+import { CreateTaskDto, Task, TaskStatus } from '../../model/task.model';
 import { SprintColumn } from '../sprint-column/sprint-column';
 import { TaskForm } from '../task-form/task-form';
 import { Auth } from '../../services/auth';
@@ -17,6 +17,19 @@ import { Auth } from '../../services/auth';
 
 export class SprintBoard{
   darkMode = signal(false);
+  editingTask = signal<Task | null>(null);
+
+  onEditTask(task: Task) {
+  this.editingTask.set(task);
+  this.showTaskForm.set(true);
+  }
+
+  async onUpdateTask(event: { id: string, updates: Partial<Task> }) {
+   await this.tasksService.updateTask(event.id, event.updates);
+    this.editingTask.set(null);
+    this.showTaskForm.set(false);
+  }
+
   
   toggleTheme() {
     this.darkMode.update(v => !v);
