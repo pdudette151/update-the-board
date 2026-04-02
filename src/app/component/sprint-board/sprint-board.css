@@ -19,6 +19,14 @@ h1 {
   padding: 0 8px;
 }
 
+.todo-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  grid-column: 1;
+  grid-row: 1;
+}
+
 .header-right {
   display: flex;
   flex-direction: column;
@@ -79,8 +87,6 @@ h1 {
   cursor: pointer;
   transition: all 0.2s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  grid-column: 1;
-  grid-row: 1;
 }
 
 .btn-add-task:hover {

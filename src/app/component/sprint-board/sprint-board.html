@@ -3,21 +3,23 @@
   <h1>Update The Board!</h1>
   <div class="header-right">
     <button class="btn-sign-out" (click)="signOut()">Sign Out</button>
-    <div class="wrapper">
-      <div class="progress-bar">
-        <div class="progress" [style.width.%]="completionPercentage()">
-        </div>
-      </div>{{ completionPercentage() }}% complete
-    </div>
   </div>
   </header>
 
 
   <div class="board-columns">
         
-    <button class="btn-add-task" (click)="showTaskForm.set(true)">
+    <div class="todo-header">
+      <button class="btn-add-task" (click)="showTaskForm.set(true)">
       + Add Task
-    </button>
+      </button>
+      <div class="wrapper">
+        <div class="progress-bar">
+          <div class="progress" [style.width.%]="completionPercentage()">
+          </div>
+        </div>{{ completionPercentage() }}% complete
+      </div>
+    </div>
         
     <app-sprint-column
       title="To Do"
@@ -51,7 +53,7 @@
       (taskDelete)="onTaskDelete($event)">
     </app-sprint-column>
 
-    </div>
+  </div>
 
     @if (showTaskForm()) {
       <app-task-form
