@@ -1,6 +1,10 @@
 <div class="login-container">
   <h1>Update The Board!</h1>
   <button (click)="auth.signInWithGoogle()">Sign In with Google</button>
+    <p> Or Sign In with Email and Password</p>
+  <input type="email" placeholder="Email" [(ngModel)]="email">
+  <input type="password" placeholder="Password" [(ngModel)]="password">
+  <button (click)="auth.signInExistingUserWithEmail(email(), password())">Sign In</button>
+    <p>Don't have an account? Sign Up below</p>
+  <button (click)="auth.createSignInWithEmail(email(), password())">Sign Up</button>
 </div>
-
-
