@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TasksService } from '../../services/tasks';
 import { CreateTaskDto, Task, TaskStatus } from '../../model/task.model';
@@ -15,9 +15,17 @@ import { Auth } from '../../services/auth';
   styleUrls: ['./sprint-board.css'],
 })
 
-export class SprintBoard{
+export class SprintBoard implements OnInit {
   darkMode = signal(false);
   editingTask = signal<Task | null>(null);
+
+  ngOnInit() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      this.darkMode.set(true);
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  }
 
   onEditTask(task: Task) {
   this.editingTask.set(task);
@@ -30,13 +38,13 @@ export class SprintBoard{
     this.showTaskForm.set(false);
   }
 
-  
   toggleTheme() {
     this.darkMode.update(v => !v);
     document.documentElement.setAttribute(
       'data-theme',
       this.darkMode() ? 'dark' : 'light'
     );
+    localStorage.setItem('theme', this.darkMode() ? 'dark' : 'light');
   }
 
   showTaskForm = signal(false);
