@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { Firestore, collection, collectionData, addDoc, doc, updateDoc, deleteDoc, query, orderBy } from '@angular/fire/firestore';
-import { Auth as FirebaseAuth } from '@angular/fire/auth';
+import { Auth as FirebaseAuth, user } from '@angular/fire/auth';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs'; 
+import { Observable, of } from 'rxjs';
 import { Task, CreateTaskDto, TaskStatus } from '../model/task.model';
 
 
@@ -17,10 +18,14 @@ export class TasksService {
   private tasksCollection = collection(this.firestore, 'tasks');
 
   tasks = toSignal(
-    collectionData(
-      query(this.tasksCollection, orderBy('order_index')),
-      { idField: 'id' }
-    ) as Observable<Task[]>,
+    user(this.auth).pipe(
+      switchMap(u => u
+        ? collectionData(
+          query(this.tasksCollection, orderBy('order_index')),
+          { idField: 'id' }
+        ) as Observable<Task[]>
+      : of([] as Task[]))
+    ),
     { initialValue: [] as Task[] }
   );
 
