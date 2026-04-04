@@ -1,10 +1,25 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { Auth } from './services/auth';
+import { RouterModule } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('App', () => {
+  const mockAuth = {
+    currentUser$: of(null),
+    users: () => [],
+    signOut: vi.fn(),
+    signInWithGoogle: vi.fn(),
+    createSignInWithEmail: vi.fn(),
+    signInExistingUserWithEmail: vi.fn(),
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App],
+      imports: [App, RouterModule.forRoot([])],
+      providers: [
+        { provide: Auth, useValue: mockAuth },
+      ],
     }).compileComponents();
   });
 
@@ -14,10 +29,15 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should show login overlay when no user is signed in', () => {
+    // Arrange
     const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, update-the-board');
+
+    // Act
+    fixture.detectChanges();
+
+    // Assert
+    const overlay = fixture.nativeElement.querySelector('#login-overlay');
+    expect(overlay).toBeTruthy();
   });
 });
